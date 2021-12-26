@@ -1,6 +1,6 @@
 name: log
-description: Template for Flutter Package project.
-version: 0.0.1+1
+description: Console logger for app/package development
+version: 0.0.1+2
 homepage: http://www.raehealth.com
 publish_to: 'none'
 
