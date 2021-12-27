@@ -8,20 +8,19 @@ environment:
   flutter: ">=2.8.1"
 
 dependencies:
-  cupertino_icons: ^1.0.4
-  log:
-    path: ../
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.0.0
-  flutter_extras:
+  cupertino_icons: ^1.0.4
+  extensions_package:
     git:
-      url: https://github.com/GitHubStuff/flutter_packages.git
-      path: flutter_extras
+      url: https://github.com/RAE-Health/extensions_package.git
+  flutter_bloc: ^8.0.0
   flutter_localizations:
     sdk: flutter
   flutter_modular: ^4.2.0
   intl: ^0.17.0
+  log:
+    path: ../
   theme_manager:
     git:
       url: https://github.com/GitHubStuff/theme_manager

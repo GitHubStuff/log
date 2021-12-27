@@ -8,6 +8,15 @@ Provides logging to the console for different log levels
 dependencies:
   log:
     git:
+      url: https://github.com/GitHubStuff/log.git
+```
+
+***- OR -***
+
+```text
+dependencies:
+  log:
+    git:
       url: https://github.com/RAE-Health/log.git
 ```
 
