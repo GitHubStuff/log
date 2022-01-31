@@ -61,7 +61,7 @@ mixin LogMixin {
     final addTag = tag.isNotEmpty ? ' <$tag> ' : '';
     final icon = level.icon;
     final String text = '$_consoleTimeStamp: $icon ${level.name}$addTag';
-    if (!(message is List<dynamic>)) {
+    if (!(message is List<dynamic>) && !showDivider) {
       debugPrint('$text: $message');
     } else {
       debugPrint(text);
