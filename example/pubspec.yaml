@@ -11,21 +11,21 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.4
-  extensions_package:
-    git:
-      url: https://github.com/RAE-Health/extensions_package.git
-  flutter_bloc: ^8.0.0
+  flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
-  flutter_modular: ^4.2.0
+  flutter_modular: ^4.4.0
   intl: ^0.17.0
   log:
     path: ../
-  theme_manager:
+  theme_management:
     git:
-      url: https://github.com/GitHubStuff/theme_manager
+      url: https://github.com/GitHubStuff/theme_management
 
-dependency_overrides: null
+dependency_overrides:
+  extensions_package:
+    git:
+      url: https://github.com/GitHubStuff/extensions_package.git
 
 dev_dependencies:
   test: ^1.20.1

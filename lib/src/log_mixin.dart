@@ -58,11 +58,15 @@ mixin LogMixin {
   static verifyLoggingUsingMessageLevel(LogLevel level, Object message, String tag, bool showDivider) {
     if (_logLevels.isEmpty) setLogginLevel(LogLevel.All);
     if (!_logLevels.contains(level) || level == LogLevel.None) return;
-    final addTag = tag.isNotEmpty ? ' <$tag> ' : ' ';
+    final addTag = tag.isNotEmpty ? ' <$tag> ' : '';
     final icon = level.icon;
     final String text = '$_consoleTimeStamp: $icon ${level.name}$addTag';
-    debugPrint(text);
-    _buildLines(message, tag, showDivider);
+    if (!(message is List<dynamic>)) {
+      debugPrint('$text: $message');
+    } else {
+      debugPrint(text);
+      _buildLines(message, tag, showDivider);
+    }
     if (level == LogLevel.Crash) {
       throw FlutterError('🆘 FORCED CRASH 🆘');
     }

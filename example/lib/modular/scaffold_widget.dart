@@ -1,7 +1,7 @@
 import 'package:extensions_package/extensions_package.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:theme_manager/theme_manager.dart';
+import 'package:theme_management/theme_management.dart';
 import 'package:xample/cubit/locale_cubit.dart';
 
 class ScaffoldWidget extends StatefulWidget {
@@ -16,22 +16,19 @@ class _ScaffoldWidget extends ObservingStatefulWidget<ScaffoldWidget> {
   String message = 'Tap for Size';
   String instruction = 'Tap + to change the text';
   String instruction2 = 'Tap again';
-  bool isFirst = true;
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
           actions: [
-            ThemeControlWidget(),
+            //ThemeControlWidget(),
           ],
         ),
         body: _body(context),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            setState(() {
-              isFirst = !isFirst;
-            });
+            ThemeManagement.toggle(context);
           },
           tooltip: 'Increment',
           child: Icon(Icons.add),
@@ -46,20 +43,6 @@ class _ScaffoldWidget extends ObservingStatefulWidget<ScaffoldWidget> {
         children: <Widget>[
           Text(
             message,
-          ),
-          WidgetSize(
-            onSizeChange: (Size? size) {
-              setState(() {
-                final height = context.height;
-                final width = context.width;
-                debugPrint('height: $height, width: $width $isFirst');
-                message = 'Size - $size';
-              });
-            },
-            child: Text(
-              isFirst ? instruction : instruction2,
-              style: Theme.of(context).textTheme.headline4,
-            ),
           ),
           SizedBox(height: 24),
           Row(
