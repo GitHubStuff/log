@@ -1,5 +1,8 @@
 import 'package:log/src/log_mixin.dart';
+
 import 'src/log_enum.dart';
+
+export 'src/log_enum.dart';
 
 // Log in order
 class Log with LogMixin {

@@ -1,6 +1,6 @@
 name: log
 description: Console logger for app/package development
-version: 0.0.1+7
+version: 0.0.1+8
 homepage: http://www.raehealth.com
 publish_to: 'none'
 
