@@ -35,6 +35,8 @@ extension _LogLevel on LogLevel {
 mixin LogMixin {
   //---- PUBLIC METHODS
   static setLogginLevel(LogLevel level) {
+    if (_currentLogLevel == level) return;
+    _currentLogLevel = level;
     _logLevels = Set.from(LogLevel.values);
     List<String> theLines = ['Log Level set to ${level.icon} ${level.name}'];
     for (LogLevel levelItem in LogLevel.values) {
@@ -74,6 +76,7 @@ mixin LogMixin {
 
   //---- PRIVATE VALUES/METHODS
   static Set<LogLevel> _logLevels = Set();
+  static LogLevel _currentLogLevel = LogLevel.All;
 
   static get _consoleTimeStamp => DateFormat('HH:mm:ss.SSS').format(DateTime.now().toLocal());
 
