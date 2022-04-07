@@ -1,71 +1,71 @@
 import 'package:log/src/log_mixin.dart';
-
-export 'src/dictionary_enum.dart';
-export 'src/log_mixin.dart';
+import 'src/log_enum.dart';
 
 // Log in order
 class Log with LogMixin {
-  static A(dynamic message, {String tag = '', bool showDivider = false}) => LogMixin.verifyLoggingUsingMessageLevel(
+  static A(dynamic message, {bool drawBox = false}) => LogMixin.logContent(
         LogLevel.All,
         message,
-        tag,
-        showDivider,
+        drawBox,
       );
-  static M(dynamic message, {String tag = '', bool showDivider = false}) => LogMixin.verifyLoggingUsingMessageLevel(
+  static M(dynamic message, {bool drawBox = false}) => LogMixin.logContent(
         LogLevel.Mark,
         message,
-        tag,
-        showDivider,
+        drawBox,
       );
-  static T(dynamic message, {String tag = '', bool showDivider = false}) => LogMixin.verifyLoggingUsingMessageLevel(
+  static T(dynamic message, {bool drawBox = false}) => LogMixin.logContent(
         LogLevel.Trace,
         message,
-        tag,
-        showDivider,
+        drawBox,
       );
-  static V(dynamic message, {String tag = '', bool showDivider = false}) => LogMixin.verifyLoggingUsingMessageLevel(
+  static V(dynamic message, {bool drawBox = false}) => LogMixin.logContent(
         LogLevel.Verbose,
         message,
-        tag,
-        showDivider,
+        drawBox,
       );
-  static D(dynamic message, {String tag = '', bool showDivider = false}) => LogMixin.verifyLoggingUsingMessageLevel(
+  static O(dynamic message, {bool drawBox = false}) => LogMixin.logContent(
+        LogLevel.Observe,
+        message,
+        drawBox,
+      );
+  static D(dynamic message, {bool drawBox = false}) => LogMixin.logContent(
         LogLevel.Debug,
         message,
-        tag,
-        showDivider,
+        drawBox,
       );
-  static I(dynamic message, {String tag = '', bool showDivider = false}) => LogMixin.verifyLoggingUsingMessageLevel(
+  static I(dynamic message, {bool drawBox = false}) => LogMixin.logContent(
         LogLevel.Info,
         message,
-        tag,
-        showDivider,
+        drawBox,
       );
-  static W(dynamic message, {String tag = '', bool showDivider = false}) => LogMixin.verifyLoggingUsingMessageLevel(
+  static W(dynamic message, {bool drawBox = false}) => LogMixin.logContent(
         LogLevel.Warning,
         message,
-        tag,
-        showDivider,
+        drawBox,
       );
-  static E(dynamic message, {String tag = '', bool showDivider = false}) => LogMixin.verifyLoggingUsingMessageLevel(
+  static E(dynamic message, {bool drawBox = false}) => LogMixin.logContent(
         LogLevel.Error,
         message,
-        tag,
-        showDivider,
+        drawBox,
       );
-  static F(dynamic message, {String tag = '', bool showDivider = false}) => LogMixin.verifyLoggingUsingMessageLevel(
+  static F(dynamic message, {bool drawBox = true}) => LogMixin.logContent(
         LogLevel.Fix,
         message,
-        tag,
-        showDivider,
+        drawBox,
       );
-  static C(dynamic message, {String tag = '', bool showDivider = false}) => LogMixin.verifyLoggingUsingMessageLevel(
+  static C(dynamic message, {bool drawBox = false}) => LogMixin.logContent(
         LogLevel.Crash,
         message,
-        tag,
-        showDivider,
+        drawBox,
       );
 
-  // Any call to Log.?, where '?' is below the set level will ignored.
-  static setLoggingLevelTo(LogLevel level) => LogMixin.setLogginLevel(level);
+  // ignore: non_constant_identifier_names
+  static Assert(bool condition, [String? message]) {
+    if (condition) return;
+    final String text = message ?? 'Assert';
+    E(text, drawBox: true);
+  }
+
+  // Any call to Log.*, where '*' is below the set level will ignored.
+  static setLoggingLevelTo(LogLevel level) => LogMixin.setLoggingLevel(level);
 }
