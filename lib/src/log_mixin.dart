@@ -20,15 +20,16 @@ mixin LogMixin {
     String tag,
   ) {
     String ts = _consoleTimeStamp;
+    List<String> displayLines = [];
     List<dynamic> items = _processContent(content);
     bool buildBox = drawBox || (items.length > 1) || tag.isNotEmpty;
     final String topLine = '$_topLeftCorner'.padRight(3, _doubleDivider) + '$tag ${level.name} '.padRight(80, _doubleDivider);
+
     if (buildBox) {
-      items.add('$ts:');
-      items.add(topLine);
+      displayLines.add('$ts:');
+      displayLines.add(topLine);
     }
 
-    List<String> displayLines = [];
     for (dynamic item in items) {
       if (buildBox) {
         displayLines.add('$_verticalLine ${item.toString()}');
