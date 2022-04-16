@@ -36,6 +36,7 @@ enum LogLevel {
   Mark,
   Trace,
   Verbose,
+  Observe,
   Debug,
   Info,
   Warning,
@@ -52,6 +53,7 @@ Log.A(dynamic message, {String tag = '', bool showDivider = false}); // All
 Log.M(dynamic message, {String tag = '', bool showDivider = false}); // Mark
 Log.T(dynamic message, {String tag = '', bool showDivider = false}); // Trace
 Log.V(dynamic message, {String tag = '', bool showDivider = false}); // Verbose
+Log.O(dynamic message, {String tag = '', bool showDivider = false}); // Observe
 Log.D(dynamic message, {String tag = '', bool showDivider = false}); // Debug
 Log.I(dynamic message, {String tag = '', bool showDivider = false}); // Info
 Log.W(dynamic message, {String tag = '', bool showDivider = false}); // Warning
@@ -90,6 +92,7 @@ flutter: 🔴 │ ✅ 🔗 All
 flutter: 🔴 │ ✅ ✅ Mark
 flutter: 🔴 │ ✅ 🧭 Trace
 flutter: 🔴 │ ✅ 📣 Verbose
+flutter: 🔴 │ ✅ 👀 Observe
 flutter: 🔴 │ ✅ 🐞 Debug
 flutter: 🔴 │ ✅ 📝 Info
 flutter: 🔴 │ ✅ 🚸 Warning
@@ -109,6 +112,7 @@ flutter: 🔴 │ 🚫 🔗 All
 flutter: 🔴 │ 🚫 ✅ Mark
 flutter: 🔴 │ 🚫 🧭 Trace
 flutter: 🔴 │ 🚫 📣 Verbose
+flutter: 🔴 │ ✅ 👀 Observe
 flutter: 🔴 │ ✅ 🐞 Debug
 flutter: 🔴 │ ✅ 📝 Info
 flutter: 🔴 │ ✅ 🚸 Warning

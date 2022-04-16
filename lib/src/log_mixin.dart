@@ -13,22 +13,32 @@ const _doubleDivider = '─';
 
 mixin LogMixin {
   //---- PUBLIC METHODS
-  static void logContent(LogLevel level, Object content, bool drawBox) {
+  static void logContent(
+    LogLevel level,
+    Object content,
+    bool drawBox,
+    String tag,
+  ) {
     String ts = _consoleTimeStamp;
-    bool buildBox = drawBox || (content is List<dynamic>);
-    List<String> items = [];
-    final String topLine = '$_topLeftCorner '.padRight(3, _doubleDivider) + ' ${level.name} '.padLeft(80, _doubleDivider);
+    List<dynamic> items = _processContent(content);
+    bool buildBox = drawBox || (items.length > 1) || tag.isNotEmpty;
+    final String topLine = '$_topLeftCorner'.padRight(3, _doubleDivider) + '$tag ${level.name} '.padRight(80, _doubleDivider);
     if (buildBox) {
       items.add('$ts:');
       items.add(topLine);
     }
-    if (content is List<String>) {
-      for (String item in content) items.add('$_verticalLine $item');
-      items.add('$_bottomLeftCorner' + '$_doubleDivider'.padRight(topLine.length - 1));
-    } else {
-      items.add('$ts: ${level.icon} ${content.toString()}');
+
+    List<String> displayLines = [];
+    for (dynamic item in items) {
+      if (buildBox) {
+        displayLines.add('$_verticalLine ${item.toString()}');
+      } else {
+        displayLines.add('$ts: ${level.icon} ${item.toString()}');
+      }
     }
-    for (String line in items) debugPrint('$line');
+
+    if (buildBox) displayLines.add('$_bottomLeftCorner' + '$_doubleDivider'.padRight(topLine.length - 1));
+    for (String line in displayLines) debugPrint('$line');
     if (level == LogLevel.Crash) throw FlutterError('🆘 FORCED CRASH 🆘');
   }
 
@@ -45,12 +55,23 @@ mixin LogMixin {
       final stateIcon = (match) ? '✅' : '🚫';
       theLines.add('$stateIcon ${levelItem.icon} ${levelItem.name}');
     }
-    logContent(LogLevel.None, theLines, true);
+    logContent(LogLevel.None, theLines, true, '');
   }
 
   //---- PRIVATE VALUES/METHODS
   static Set<LogLevel> _logLevels = Set();
   static LogLevel _currentLogLevel = LogLevel.All;
+  static List<dynamic> _processContent(Object content) {
+    List<dynamic> result = [];
+    if (content is List<dynamic>) {
+      result.addAll(content);
+    }
+    if (content is String) {
+      result = content.split('\n');
+    }
+    if (result.isEmpty) result.add(content);
+    return result;
+  }
 
   static get _consoleTimeStamp => DateFormat('HH:mm:ss.SSS').format(DateTime.now().toLocal());
 }
