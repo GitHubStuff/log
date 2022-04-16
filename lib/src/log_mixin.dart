@@ -23,7 +23,7 @@ mixin LogMixin {
     List<String> displayLines = [];
     List<dynamic> items = _processContent(content);
     bool buildBox = drawBox || (items.length > 1) || tag.isNotEmpty;
-    final String topLine = '$_topLeftCorner'.padRight(3, _doubleDivider) + '$tag ${level.name} ${level.icon} '.padRight(80, _doubleDivider);
+    final String topLine = '$_topLeftCorner'.padRight(3, _doubleDivider) + ' $tag ${level.name} ${level.icon} '.padRight(80, _doubleDivider);
 
     if (buildBox) {
       displayLines.add('$ts:');
@@ -37,8 +37,7 @@ mixin LogMixin {
         displayLines.add('$ts: ${level.icon} ${item.toString()}');
       }
     }
-    if (buildBox) debugPrint('..... length: ${topLine.length - 1}');
-    if (buildBox) displayLines.add('$_bottomLeftCorner' + '$_doubleDivider'.padRight(topLine.length - 1));
+    if (buildBox) displayLines.add('$_bottomLeftCorner' + '$_doubleDivider'.padRight(topLine.length - 1, _doubleDivider));
     for (String line in displayLines) debugPrint('$line');
     if (level == LogLevel.Crash) throw FlutterError('🆘 FORCED CRASH 🆘');
   }
